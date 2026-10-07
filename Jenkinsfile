@@ -15,6 +15,8 @@ pipeline {
                 archiveArtifacts 'dist/**'
             }
         }
+        stage('Prévisualiser') { steps { sh 'npm run deploy:preview' } }
+        stage('Valider') { steps { input message: 'Mettre en ligne ?' } }
         stage('Déployer') { steps { sh 'npm run deploy' } }
     }
     post {
